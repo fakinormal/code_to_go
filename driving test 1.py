@@ -28,9 +28,34 @@ if __name__ == "__main__":
 		 [1./2, 1./4, 10., 1./9, 1./3],[1./6, 1./2, 2., 9./7, 1./5],\
 		 [1./3, 0., 1., 1./2, 11./2]])
 	
-	# 1.	
+	# 2.	
 	lambda_1, x = power_iteration(A)
 	print("largest eigenvalue: {}, eigenvector: {}".format(lambda_1, x))
+
+
+	# 3.
+	lambda_1, y = power_iteration(A.T)
+	print("A transpose, largest eigenvalue: {}, eigenvector: {}".format(lambda_1, y))
+
+
+	# 4. 
+	B = A - lambda_1*(x.reshape([-1,1]).dot(x.reshape([1, -1])))/(x.reshape([1, -1]).dot(x.reshape([-1, 1])))[0]
+
+	print("B: {}".format(B))
+
+
+	# 5. 
+
+	lambda_2, _ = power_iteration(B)
+
+	print("second largest: {}".format(lambda_2))
+
+
+	# 6. 
+
+	print("final result: {}".format(lambda_1*lambda_2))
+
+
 
 
 
